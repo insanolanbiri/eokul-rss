@@ -1,0 +1,1 @@
+eokul-rss is a rss feed generator based on flask that notifies when a new mark is found in the eokul vbs portal.
