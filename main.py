@@ -86,11 +86,7 @@ def check_exam_result() -> list[tuple[str]]:
     diff = list_difference(newstate, state)
     result = []
     for changed_lesson in diff:
-        old_changed_lessons = [
-            l
-            for l in state
-            if (l.lesson_id == changed_lesson.lesson_id and l.term == changed_lesson.term)
-        ]
+        old_changed_lessons = [l for l in state if changed_lesson.isMarkOfSelf(l)]
         old_changed_lesson = old_changed_lessons[0] if old_changed_lessons else emptylesson
         sozlu_diff = dict_difference(old_changed_lesson.sozlu, changed_lesson.sozlu)
         yazili_diff = dict_difference(old_changed_lesson.yazili, changed_lesson.yazili)
@@ -98,7 +94,7 @@ def check_exam_result() -> list[tuple[str]]:
             ort = [
                 d.marks[nth].avg_mark
                 for d in st.class_exam_average.data
-                if (d.lesson_name == changed_lesson.lesson and d.term == changed_lesson.term)
+                if changed_lesson.isAvgmarkOfSelf(d)
             ]
             result.append(
                 (
