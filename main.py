@@ -75,7 +75,7 @@ def check_exam_result() -> list[tuple[str]]:
     global state
     global last_update
     global CACHING_TIME
-    if not time() - last_update > CACHING_TIME:
+    if (time() - last_update) < CACHING_TIME:
         return []
     last_update = time()
     user._update_marks(st)
