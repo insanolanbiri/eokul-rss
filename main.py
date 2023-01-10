@@ -28,6 +28,7 @@ CACHING_TIME: float = 60.0
 """cache timeout in seconds"""
 
 last_update = 0.0
+"""last update time in seconds"""
 
 app = Flask(__name__)
 
